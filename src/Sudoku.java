@@ -45,13 +45,23 @@ public class Sudoku {
 
     public boolean is3x3Valid(int row, int column, int tryNumber) {
         //getting the 3x3 grid
-        int rowBox = row - row % 3;
-        int columnBox = column - column % 3;
+//        int rowBox = row - (row % 3);
+//        int columnBox = column - (column % 3);
 
+        for (int x = 0; x < sudoku.length; x++) {
+            for (int y = 0; y < sudoku.length; x++) {
+                x = row  - (row % 3);
+                y = column - (column % 3);
+                if (sudoku[x][y] == tryNumber) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    public boolean areNumbersValid() {
-        if (!isRowValid() && !isColumnValid() && !is3x3Valid()) {
+    public boolean areNumbersValid(int row, int column, int tryNumber) {
+        if (!isRowValid(row, tryNumber) && !isColumnValid(column, tryNumber) && !is3x3Valid(row, column, tryNumber)) {
             return true;
         }
         return false;
