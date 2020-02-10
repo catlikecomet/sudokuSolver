@@ -48,6 +48,12 @@ public class Sudoku {
         int rowBox = row - row % 3;
         int columnBox = column - column % 3;
 
+    }
 
+    public boolean areNumbersValid() {
+        if (!isRowValid() && !isColumnValid() && !is3x3Valid()) {
+            return true;
+        }
+        return false;
     }
 }
