@@ -18,6 +18,7 @@ public class main {
         };
 
         if (Sudoku.solver(board)) {
+            //I needed to look up how to print 2d arrays to a string
             String solved = Arrays
                     .stream(board)
                     .map(Arrays::toString)
