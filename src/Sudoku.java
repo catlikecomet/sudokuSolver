@@ -16,18 +16,18 @@ public class Sudoku {
     public static boolean isRowValid(int[][] board, int row, int tryNumber) {
         for (int i = 0; i < board.length; i++) {
             if (board[row][i] == tryNumber) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public static boolean isColumnValid(int[][] board, int column, int tryNumber) {
         for (int i = 0; i < board.length; i++) {
             if (board[i][column] == tryNumber)
-                return true;
+                return false;
         }
-        return false;
+        return true;
     }
 
     public static boolean is3x3Valid(int[][] board, int row, int column, int tryNumber) {
@@ -38,15 +38,15 @@ public class Sudoku {
         for (int x = rowBox; x < rowBox + 3; x++) {
             for (int y = columnBox; y < columnBox + 3; y++) {
                 if (board[x][y] == tryNumber) {
-                    return true;
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
 
     public static boolean areNumbersValid(int[][] board, int row, int column, int tryNumber) {
-        if (!isRowValid(board, row, tryNumber) && !isColumnValid(board, column, tryNumber) && !is3x3Valid(board, row, column, tryNumber)) {
+        if (isRowValid(board, row, tryNumber) && isColumnValid(board, column, tryNumber) && is3x3Valid(board, row, column, tryNumber)) {
             return true;
         }
         return false;
@@ -55,24 +55,24 @@ public class Sudoku {
     public static boolean solver(int[][] board) {
         int row = 0;
         int column = 0;
-        boolean isSpaceEmpty = true;
+        boolean isSpaceZero = true;
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
                 if (board[x][y] == 0) {
                     //filling up the square with a number so it is no longer empty
                     row = x;
                     column = y;
-                    isSpaceEmpty = false;
+                    isSpaceZero = false;
                     break;
                 }
             }
             //if there are still empty spaces
-            if (!isSpaceEmpty) {
+            if (!isSpaceZero) {
                 break;
             }
         }
         //if there is no empty spaces left
-        if (isSpaceEmpty) {
+        if (isSpaceZero) {
             return true;
         }
 
